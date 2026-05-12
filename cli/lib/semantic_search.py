@@ -181,7 +181,7 @@ class ChunkedSemanticSearch(SemanticSearch):
         for movie_idx,score in soreted_movies:
             doc:dict = self.documents[movie_idx]
             res = {
-                "id":id,
+                "id":self.documents[movie_idx]["id"],
                 "title": doc["title"],
                 "document":doc["description"][:100],
                 "score": score# round(score_map[id],5),

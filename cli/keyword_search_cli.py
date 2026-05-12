@@ -165,9 +165,9 @@ def keyword_search(searchTerm: str):
 
     for token in searchTokens:
         doc_ids = II.get_documents(token)
-        for id in doc_ids:
+        for idx in doc_ids:
             #print(id)
-            movie = II.docmap.get(id)
+            movie = II.docmap.get(idx)
             print(f"{n}. {movie["title"]}")
             n += 1
             if n >= 6:
@@ -285,17 +285,17 @@ class InvertedIndex:
         BM25 = bm25_tf * bm25_idf
         return BM25
     
-    def bm25_search(self,query,limit:int = 5):
+    def bm25_search(self,query,limit:int = 5): # score for result, movie for movie map
         query_tokens = self.tokenizer.tokenize(query)
         scores: dict[int,float] = {}
         #for idx in self.index:
         for term in query_tokens:
             doc_ids = self.get_documents(term)
-            for id in doc_ids:
-                current_score = scores.get(id)
+            for idx in doc_ids:
+                current_score = scores.get(idx)
                 if current_score == None:
                     current_score = 0.0
-                scores[id] = current_score + self.bm25(id,term)
+                scores[idx] = current_score + self.bm25(idx,term)
         
         scores = dict(sorted(scores.items(), key=lambda item: item[1], reverse=True))
         #print(scores)
@@ -325,8 +325,8 @@ class InvertedIndex:
             os.makedirs("cache")
         with open("cache/index.pkl","wb") as idx:
             pickle.dump(self.index,idx)
-        with open("cache/docmap.pkl","wb") as docmap:
-            pickle.dump(self.docmap,docmap)
+        with open("cache/docmap.pkl","wb") as dcmp:
+            pickle.dump(self.docmap,dcmp)
         with open("cache/term_frequencies.pkl","wb") as freq:
             pickle.dump(self.term_frequencies,freq)
         with open("cache/doc_lengths.pkl","wb") as lengths:
