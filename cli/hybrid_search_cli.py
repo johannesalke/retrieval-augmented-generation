@@ -51,8 +51,6 @@ def main() -> None:
                 print(description)
 
         case "rrf-search":
-            #print("The Berenstain Bears' Christmas Tree")
-            #return
             HS = hs.HybridSearch(load_movies())
             query = args.query
             enhance = args.enhance
@@ -83,6 +81,7 @@ def main() -> None:
                     llm_rank = llm.rerank_individual(query,res["document"])
                     res["rerank_score"] = int(llm_rank)
                     time.sleep(10)
+                    print(res["rerank_score"])
                     results[i] = res
                 results = sorted(results,key=lambda x: x["rerank_score"],reverse=True)
 
