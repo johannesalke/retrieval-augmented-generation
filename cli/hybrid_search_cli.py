@@ -82,7 +82,7 @@ def main() -> None:
                 for i,res in enumerate(results):
                     llm_rank = llm.rerank_individual(query,res["document"])
                     res["rerank_score"] = int(llm_rank)
-                    time.sleep(3)
+                    time.sleep(10)
                     results[i] = res
                 results = sorted(results,key=lambda x: x["rerank_score"],reverse=True)
 
