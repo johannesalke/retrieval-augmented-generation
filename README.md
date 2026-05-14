@@ -6,7 +6,7 @@ RAG is a technique of Augmenting the Generated output of an LLM by first Retriev
 
 ##### Topics covered in this course
 
-- Keyword Search: Finding relevant documents by the keywords they contain. Includes methodologies such as preprocessing & tokenization of queries and documents, inverse indexing, search relevance formulars such as BM 25.
+- Keyword Search: Finding relevant documents by the keywords they contain. Includes methodologies such as preprocessing & tokenization of queries and documents, inverse indexing, search relevance formulars such as TF-IDF & BM 25.
 - Semantic Search: Finding relevant documents by the semantic similarity between their contents and the query. Includes methodologies such as embedding of text into vector spaces, chunked embedding, overlapped embedding, sentence based embedding.
 - Hybrid Search: Combinding both search approaches to create a combined relevance ranking. Includes Score normalization, weighted combination & reciprocal rank fusion (rrf).
 - Query Preprocessing: Letting an LLM preprocess a query, e.g. by correcting spelling, rewriting or expanding it.
